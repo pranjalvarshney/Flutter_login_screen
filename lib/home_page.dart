@@ -48,6 +48,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _showForgotPassDialog(){
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text("Forgot Password"),
+          content: _inputEmail(),
+          actions: <Widget>[
+            FlatButton(onPressed: (){
+              Navigator.of(context).pop();
+            },
+             child: Text("Submit")),
+          ],
+        );
+      },
+    );
+  }
+
   Widget _loginSignupSection() => Padding(
         padding: EdgeInsets.only(left: 30, right: 30),
         child: Container(
@@ -113,7 +132,7 @@ class _HomePageState extends State<HomePage> {
           Column(
             children: <Widget>[
               SizedBox(height: 30),
-              _inputUserName(),
+              _inputEmail(),
               SizedBox(height: 10),
               _inputPassword(),
               SizedBox(height: 10),
@@ -135,7 +154,7 @@ Widget _signUpSection() => Column(
               SizedBox(height: 30),
               _inputName(),
               SizedBox(height: 10),
-              _inputUserName(),
+              _inputEmail(),
               SizedBox(height: 10),
               _inputPhoneNo(),
               SizedBox(height: 10), 
@@ -153,6 +172,7 @@ Widget _signUpSection() => Column(
 
 
   Widget _forgotPassword() => GestureDetector(
+        onTap: _showForgotPassDialog,
         child: Text(
           "Forgot Password?",
           style: TextStyle(fontWeight: FontWeight.w600),
@@ -175,7 +195,7 @@ Widget _signUpSection() => Column(
         },
       );
 
-      Widget _inputUserName() => TextFormField(
+      Widget _inputPhoneNo() => TextFormField(
         decoration: InputDecoration(
             labelText: "Phone No.",
             contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -192,7 +212,7 @@ Widget _signUpSection() => Column(
       );
 
 
-  Widget _inputPhoneNo() => TextFormField(
+  Widget _inputEmail() => TextFormField(
         decoration: InputDecoration(
             labelText: "Email",
             contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
